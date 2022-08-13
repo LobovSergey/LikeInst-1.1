@@ -12,6 +12,7 @@ def test_api():
 
 
 def test_api_id():
-    params = {"pk": 1}
-    response = app.test_client().get('/api/posts/', query_string=params)
-    assert type(response.json) == dict, 'not dict'
+    params = [1, 2, 3, 5, 6, 100]
+    for i in params:
+        response = app.test_client().get(f'/api/posts/{i}')
+        assert response.status_code == 200, 'error'
